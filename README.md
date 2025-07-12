@@ -59,23 +59,25 @@
         }
 
         .day-card {
-            background: #f8f9fa;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 15px;
-            padding: 20px;
-            border: 2px solid transparent;
+            padding: 25px;
+            border: 2px solid #e9ecef;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
 
         .day-card:hover {
-            border-color: #2f3542;
-            box-shadow: 0 3px 15px rgba(47, 53, 66, 0.1);
+            border-color: #667eea;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateY(-3px);
         }
 
         .day-title {
             font-size: 1.3em;
             font-weight: 700;
             margin-bottom: 15px;
-            color: #495057;
+            color: white;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -86,7 +88,9 @@
         }
 
         .member-list {
-            space-y: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
 
         .member-item {
@@ -96,33 +100,37 @@
             padding: 12px;
             background: white;
             border-radius: 10px;
-            border: 1px solid #e9ecef;
-            margin-bottom: 8px;
+            border: 2px solid #e9ecef;
             transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .member-item:hover {
-            border-color: #2f3542;
-            box-shadow: 0 1px 5px rgba(47, 53, 66, 0.1);
+            border-color: #5a6fd8;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
         }
 
         .member-name {
             font-weight: 600;
             color: #495057;
+            font-size: 13px;
+            flex: 1;
+            margin-right: 5px;
         }
 
         .status-toggle {
             display: flex;
-            gap: 5px;
+            gap: 3px;
         }
 
         .status-btn {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1em;
             font-weight: bold;
             transition: all 0.2s ease;
         }
@@ -149,7 +157,8 @@
         .add-member {
             margin-top: 15px;
             display: flex;
-            gap: 10px;
+            gap: 8px;
+            grid-column: 1 / -1;
         }
 
         .add-member input {
@@ -229,8 +238,8 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🍱 식사 포장 주문 현황 - by 이광희</h1>
-            <p>매일 누가 포장 주문하는지 체크해보세요!</p>
+            <h1>🍱 식사 포장 주문 현황</h1>
+            <p>매일 누가 포장 주문하는지 체크해보세요! - by 이광희</p>
         </div>
 
         <div class="content">
@@ -255,13 +264,6 @@
                             <div class="status-toggle">
                                 <button class="status-btn order active" data-status="order">O</button>
                                 <button class="status-btn no-order" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-name">박민수</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order" data-status="order">O</button>
-                                <button class="status-btn no-order active" data-status="no-order">X</button>
                             </div>
                         </div>
                     </div>
