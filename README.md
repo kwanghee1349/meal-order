@@ -541,7 +541,7 @@
                 memberItem.classList.add('long-pressing');
                 longPressTimer = setTimeout(() => {
                     showDeleteModal(memberItem);
-                }, 800); // 0.8초 길게 누르기
+                }, 2300); // 2.3초 길게 누르기
             }
         });
 
@@ -573,7 +573,7 @@
                 memberItem.classList.add('long-pressing');
                 longPressTimer = setTimeout(() => {
                     showDeleteModal(memberItem);
-                }, 800);
+                }, 2300);
             }
         });
 
