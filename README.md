@@ -49,8 +49,6 @@
             padding: 30px;
         }
 
-
-
         .day-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -103,12 +101,86 @@
             border: 2px solid #e9ecef;
             transition: all 0.2s ease;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            cursor: pointer;
+            user-select: none;
         }
 
         .member-item:hover {
             border-color: #5a6fd8;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
             transform: translateY(-2px);
+        }
+
+        .member-item.long-pressing {
+            background: #ffe6e6;
+            border-color: #dc3545;
+        }
+
+        .delete-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .delete-modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            max-width: 300px;
+            width: 90%;
+        }
+
+        .delete-modal h3 {
+            color: #495057;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .delete-modal p {
+            color: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .delete-modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .delete-modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .delete-modal-btn.confirm {
+            background: #dc3545;
+            color: white;
+        }
+
+        .delete-modal-btn.confirm:hover {
+            background: #c82333;
+        }
+
+        .delete-modal-btn.cancel {
+            background: #6c757d;
+            color: white;
+        }
+
+        .delete-modal-btn.cancel:hover {
+            background: #5a6268;
         }
 
         .member-name {
@@ -173,6 +245,8 @@
         .status-btn:hover {
             transform: scale(1.1);
         }
+
+
 
         .add-member {
             margin-top: 15px;
@@ -263,30 +337,13 @@
         </div>
 
         <div class="content">
-
-
             <div class="day-grid">
                 <div class="day-card">
                     <div class="day-title">
                         <span class="day-emoji">🌅</span>
                         월요일
                     </div>
-                    <div class="member-list" data-day="monday">
-                        <div class="member-item">
-                            <span class="member-name">김철수</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order" data-status="order">O</button>
-                                <button class="status-btn no-order active" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-name">이영희</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order active" data-status="order">O</button>
-                                <button class="status-btn no-order" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="member-list" data-day="monday"></div>
                     <div class="add-member">
                         <input type="text" placeholder="이름 입력" data-day="monday">
                         <button onclick="addMember('monday')">추가</button>
@@ -298,22 +355,7 @@
                         <span class="day-emoji">🔥</span>
                         화요일
                     </div>
-                    <div class="member-list" data-day="tuesday">
-                        <div class="member-item">
-                            <span class="member-name">김철수</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order active" data-status="order">O</button>
-                                <button class="status-btn no-order" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-name">이영희</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order" data-status="order">O</button>
-                                <button class="status-btn no-order active" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="member-list" data-day="tuesday"></div>
                     <div class="add-member">
                         <input type="text" placeholder="이름 입력" data-day="tuesday">
                         <button onclick="addMember('tuesday')">추가</button>
@@ -325,22 +367,7 @@
                         <span class="day-emoji">⚡</span>
                         수요일
                     </div>
-                    <div class="member-list" data-day="wednesday">
-                        <div class="member-item">
-                            <span class="member-name">김철수</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order" data-status="order">O</button>
-                                <button class="status-btn no-order active" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-name">박민수</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order active" data-status="order">O</button>
-                                <button class="status-btn no-order" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="member-list" data-day="wednesday"></div>
                     <div class="add-member">
                         <input type="text" placeholder="이름 입력" data-day="wednesday">
                         <button onclick="addMember('wednesday')">추가</button>
@@ -352,15 +379,7 @@
                         <span class="day-emoji">🌟</span>
                         목요일
                     </div>
-                    <div class="member-list" data-day="thursday">
-                        <div class="member-item">
-                            <span class="member-name">이영희</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order active" data-status="order">O</button>
-                                <button class="status-btn no-order" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="member-list" data-day="thursday"></div>
                     <div class="add-member">
                         <input type="text" placeholder="이름 입력" data-day="thursday">
                         <button onclick="addMember('thursday')">추가</button>
@@ -372,29 +391,7 @@
                         <span class="day-emoji">🎉</span>
                         금요일
                     </div>
-                    <div class="member-list" data-day="friday">
-                        <div class="member-item">
-                            <span class="member-name">김철수</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order active" data-status="order">O</button>
-                                <button class="status-btn no-order" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-name">이영희</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order active" data-status="order">O</button>
-                                <button class="status-btn no-order" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                        <div class="member-item">
-                            <span class="member-name">박민수</span>
-                            <div class="status-toggle">
-                                <button class="status-btn order active" data-status="order">O</button>
-                                <button class="status-btn no-order" data-status="no-order">X</button>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="member-list" data-day="friday"></div>
                     <div class="add-member">
                         <input type="text" placeholder="이름 입력" data-day="friday">
                         <button onclick="addMember('friday')">추가</button>
@@ -407,23 +404,23 @@
                 <div class="summary-grid">
                     <div class="summary-item">
                         <div class="summary-day">월</div>
-                        <div class="summary-count" id="monday-count">1</div>
+                        <div class="summary-count" id="monday-count">0</div>
                     </div>
                     <div class="summary-item">
                         <div class="summary-day">화</div>
-                        <div class="summary-count" id="tuesday-count">1</div>
+                        <div class="summary-count" id="tuesday-count">0</div>
                     </div>
                     <div class="summary-item">
                         <div class="summary-day">수</div>
-                        <div class="summary-count" id="wednesday-count">1</div>
+                        <div class="summary-count" id="wednesday-count">0</div>
                     </div>
                     <div class="summary-item">
                         <div class="summary-day">목</div>
-                        <div class="summary-count" id="thursday-count">1</div>
+                        <div class="summary-count" id="thursday-count">0</div>
                     </div>
                     <div class="summary-item">
                         <div class="summary-day">금</div>
-                        <div class="summary-count" id="friday-count">3</div>
+                        <div class="summary-count" id="friday-count">0</div>
                     </div>
                 </div>
             </div>
@@ -431,6 +428,35 @@
     </div>
 
     <script>
+        // 기본 멤버 목록
+        const defaultMembers = ['이광희','강규호','김광수','김남열','김원교','김재강','마준열','박재홍','박정','안태균','유승국','이동현','이정민','정외섭','조양일','추봉구'];
+        
+        // 페이지 로드 시 모든 요일에 기본 멤버 추가
+        document.addEventListener('DOMContentLoaded', function() {
+            const days = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+            days.forEach(day => {
+                defaultMembers.forEach(name => {
+                    createMemberItem(day, name);
+                });
+            });
+            updateCounts();
+        });
+
+        // 멤버 아이템 생성 함수
+        function createMemberItem(day, name) {
+            const memberList = document.querySelector(`div[data-day="${day}"]`);
+            const memberItem = document.createElement('div');
+            memberItem.className = 'member-item';
+            memberItem.innerHTML = `
+                <span class="member-name">${name}</span>
+                <div class="status-toggle">
+                    <button class="status-btn order" data-status="order">O</button>
+                    <button class="status-btn no-order active" data-status="no-order">X</button>
+                </div>
+            `;
+            memberList.appendChild(memberItem);
+        }
+
         // 상태 토글 기능
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('status-btn')) {
@@ -492,28 +518,115 @@
             }
         });
 
-        // 주간 선택 기능 (제거됨)
-
         // 멤버 추가 기능
         function addMember(day) {
             const input = document.querySelector(`input[data-day="${day}"]`);
-            const memberList = document.querySelector(`div[data-day="${day}"]`);
             const name = input.value.trim();
             
             if (name) {
-                const memberItem = document.createElement('div');
-                memberItem.className = 'member-item';
-                memberItem.innerHTML = `
-                    <span class="member-name">${name}</span>
-                    <div class="status-toggle">
-                        <button class="status-btn order" data-status="order">O</button>
-                        <button class="status-btn no-order active" data-status="no-order">X</button>
-                    </div>
-                `;
-                
-                memberList.appendChild(memberItem);
+                createMemberItem(day, name);
                 input.value = '';
                 updateCounts();
+            }
+        }
+
+        // 길게 누르기 기능
+        let longPressTimer;
+        let longPressTarget;
+
+        document.addEventListener('mousedown', function(e) {
+            const memberItem = e.target.closest('.member-item');
+            if (memberItem && !e.target.classList.contains('status-btn') && !e.target.classList.contains('member-name')) {
+                longPressTarget = memberItem;
+                memberItem.classList.add('long-pressing');
+                longPressTimer = setTimeout(() => {
+                    showDeleteModal(memberItem);
+                }, 800); // 0.8초 길게 누르기
+            }
+        });
+
+        document.addEventListener('mouseup', function(e) {
+            if (longPressTimer) {
+                clearTimeout(longPressTimer);
+                if (longPressTarget) {
+                    longPressTarget.classList.remove('long-pressing');
+                }
+                longPressTarget = null;
+            }
+        });
+
+        document.addEventListener('mouseleave', function(e) {
+            if (longPressTimer) {
+                clearTimeout(longPressTimer);
+                if (longPressTarget) {
+                    longPressTarget.classList.remove('long-pressing');
+                }
+                longPressTarget = null;
+            }
+        });
+
+        // 터치 이벤트 (모바일)
+        document.addEventListener('touchstart', function(e) {
+            const memberItem = e.target.closest('.member-item');
+            if (memberItem && !e.target.classList.contains('status-btn') && !e.target.classList.contains('member-name')) {
+                longPressTarget = memberItem;
+                memberItem.classList.add('long-pressing');
+                longPressTimer = setTimeout(() => {
+                    showDeleteModal(memberItem);
+                }, 800);
+            }
+        });
+
+        document.addEventListener('touchend', function(e) {
+            if (longPressTimer) {
+                clearTimeout(longPressTimer);
+                if (longPressTarget) {
+                    longPressTarget.classList.remove('long-pressing');
+                }
+                longPressTarget = null;
+            }
+        });
+
+        // 삭제 확인 모달 표시
+        function showDeleteModal(memberItem) {
+            const memberName = memberItem.querySelector('.member-name').textContent;
+            
+            const modal = document.createElement('div');
+            modal.className = 'delete-modal';
+            modal.innerHTML = `
+                <div class="delete-modal-content">
+                    <h3>삭제 확인</h3>
+                    <p>"${memberName}"을(를) 삭제하시겠습니까?</p>
+                    <div class="delete-modal-buttons">
+                        <button class="delete-modal-btn confirm">예</button>
+                        <button class="delete-modal-btn cancel">아니오</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // 확인 버튼
+            modal.querySelector('.confirm').addEventListener('click', function() {
+                memberItem.remove();
+                document.body.removeChild(modal);
+                updateCounts();
+            });
+            
+            // 취소 버튼
+            modal.querySelector('.cancel').addEventListener('click', function() {
+                document.body.removeChild(modal);
+            });
+            
+            // 모달 외부 클릭 시 닫기
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    document.body.removeChild(modal);
+                }
+            });
+            
+            if (longPressTarget) {
+                longPressTarget.classList.remove('long-pressing');
             }
         }
 
@@ -535,9 +648,6 @@
                 document.getElementById(`${day}-count`).textContent = orderCount;
             });
         }
-
-        // 초기 카운트 설정
-        updateCounts();
     </script>
 </body>
 </html>
