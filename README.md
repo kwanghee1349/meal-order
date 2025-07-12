@@ -12,25 +12,25 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f5f6fa;
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
         }
 
         .container {
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
             overflow: hidden;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #2f3542;
             color: white;
-            padding: 30px;
+            padding: 25px;
             text-align: center;
         }
 
@@ -49,36 +49,7 @@
             padding: 30px;
         }
 
-        .week-selector {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
 
-        .week-btn {
-            padding: 12px 24px;
-            border: none;
-            border-radius: 25px;
-            background: #f8f9fa;
-            color: #495057;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 14px;
-        }
-
-        .week-btn:hover {
-            background: #e9ecef;
-            transform: translateY(-2px);
-        }
-
-        .week-btn.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
 
         .day-grid {
             display: grid;
@@ -96,8 +67,8 @@
         }
 
         .day-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.15);
+            border-color: #2f3542;
+            box-shadow: 0 3px 15px rgba(47, 53, 66, 0.1);
         }
 
         .day-title {
@@ -131,8 +102,8 @@
         }
 
         .member-item:hover {
-            border-color: #667eea;
-            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.1);
+            border-color: #2f3542;
+            box-shadow: 0 1px 5px rgba(47, 53, 66, 0.1);
         }
 
         .member-name {
@@ -191,7 +162,7 @@
 
         .add-member button {
             padding: 12px 20px;
-            background: #667eea;
+            background: #2f3542;
             color: white;
             border: none;
             border-radius: 8px;
@@ -201,7 +172,7 @@
         }
 
         .add-member button:hover {
-            background: #5a6fd8;
+            background: #40465a;
             transform: translateY(-1px);
         }
 
@@ -241,7 +212,7 @@
         .summary-count {
             font-size: 1.5em;
             font-weight: 700;
-            color: #667eea;
+            color: #2f3542;
         }
 
         @media (max-width: 768px) {
@@ -263,10 +234,7 @@
         </div>
 
         <div class="content">
-            <div class="week-selector">
-                <button class="week-btn active" data-week="current">이번 주</button>
-                <button class="week-btn" data-week="next">다음 주</button>
-            </div>
+
 
             <div class="day-grid">
                 <div class="day-card">
@@ -458,13 +426,7 @@
             }
         });
 
-        // 주간 선택 기능
-        document.querySelectorAll('.week-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                document.querySelectorAll('.week-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
+        // 주간 선택 기능 (제거됨)
 
         // 멤버 추가 기능
         function addMember(day) {
