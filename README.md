@@ -117,6 +117,26 @@
             font-size: 13px;
             flex: 1;
             margin-right: 5px;
+            cursor: pointer;
+            padding: 2px 4px;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .member-name:hover {
+            background-color: #f8f9fa;
+        }
+
+        .member-name-input {
+            font-weight: 600;
+            color: #495057;
+            font-size: 13px;
+            flex: 1;
+            margin-right: 5px;
+            border: 1px solid #667eea;
+            border-radius: 4px;
+            padding: 2px 4px;
+            background: #f8f9fa;
         }
 
         .status-toggle {
@@ -425,6 +445,50 @@
                 
                 // 카운트 업데이트
                 updateCounts();
+            }
+        });
+
+        // 이름 편집 기능
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('member-name')) {
+                const nameSpan = e.target;
+                const currentName = nameSpan.textContent;
+                
+                // input 요소 생성
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.value = currentName;
+                input.className = 'member-name-input';
+                
+                // span을 input으로 교체
+                nameSpan.parentNode.replaceChild(input, nameSpan);
+                input.focus();
+                input.select();
+                
+                // Enter 키 또는 포커스 잃을 때 저장
+                function saveName() {
+                    const newName = input.value.trim();
+                    if (newName) {
+                        const newSpan = document.createElement('span');
+                        newSpan.className = 'member-name';
+                        newSpan.textContent = newName;
+                        input.parentNode.replaceChild(newSpan, input);
+                    } else {
+                        // 빈 이름이면 원래 이름으로 복원
+                        const newSpan = document.createElement('span');
+                        newSpan.className = 'member-name';
+                        newSpan.textContent = currentName;
+                        input.parentNode.replaceChild(newSpan, input);
+                    }
+                }
+                
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        saveName();
+                    }
+                });
+                
+                input.addEventListener('blur', saveName);
             }
         });
 
